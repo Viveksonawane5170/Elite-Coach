@@ -1,0 +1,929 @@
+/* ===== Base Styles ===== */
+:root {
+    --primary-color: #4a6fa5;
+    --secondary-color: #4cb8c4;
+    --accent-color: #ff7e5f;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --warning-color: #ffc107;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: #f5f7fa;
+}
+
+/* ===== Layout Styles ===== */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+
+.header-content h1 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+}
+
+.header-content h1 i {
+    margin-right: 10px;
+}
+
+.header-content p {
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.app-main {
+    flex: 1;
+    max-width: 800px;
+    width: 90%;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.app-footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-top: 1rem;
+}
+
+.footer-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* ===== Form Styles ===== */
+.form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #666;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.form-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.form-section h3 i {
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label i {
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+}
+
+select, input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+select:focus, input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(76, 184, 196, 0.2);
+}
+
+/* Radio and Checkbox Styles */
+.radio-group, .checkbox-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"], 
+.checkbox-option input[type="checkbox"] {
+    display: none;
+}
+
+.radio-label, .checkbox-label {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    background-color: #f9f9f9;
+}
+
+.radio-label {
+    min-width: 120px;
+    justify-content: center;
+}
+
+.radio-label i, .checkbox-label i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.radio-option input[type="radio"]:checked + .radio-label,
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.radio-option input[type="radio"]:checked + .radio-label i,
+.checkbox-option input[type="checkbox"]:checked + .checkbox-label i {
+    color: white;
+}
+
+/* Button Styles */
+.submit-btn {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn i {
+    margin-right: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Results Styles ===== */
+.results-container {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.results-header h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-header h2 i {
+    margin-right: 10px;
+}
+
+.results-header p {
+    color: #666;
+}
+
+.prompt-card {
+    background-color: #f8fafc;
+    border-left: 4px solid var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    margin: 2rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.prompt-content {
+    white-space: pre-line;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.prompt-content::first-letter {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.feedback-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.feedback-section h4 {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.feedback-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+}
+
+.feedback-btn i {
+    margin-right: 8px;
+}
+
+.feedback-btn.positive {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.feedback-btn.negative {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.feedback-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-btn i {
+    margin-right: 8px;
+}
+
+.nav-btn:hover {
+    background-color: #e9ecef;
+}
+
+/* ===== Flash Messages ===== */
+.flash-messages {
+    margin-bottom: 1.5rem;
+}
+
+.flash {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.flash-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.flash-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.flash-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid var(--error-color);
+    color: var(--error-color);
+}
+
+.flash-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid var(--warning-color);
+    color: var(--warning-color);
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+    .app-main {
+        width: 95%;
+        padding: 0 0.5rem;
+    }
+
+    .form-container, .results-container {
+        padding: 1.5rem;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .feedback-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section h3 {
+        font-size: 1.1rem;
+    }
+}
+/* Add to your existing styles */
+.coaching-content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.coaching-content h4 {
+    color: #2c3e50;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid #4a6fa5;
+}
+
+.coaching-content p {
+    margin-bottom: 1.5rem;
+}
+
+.coaching-card {
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+/* Add these to your existing styles */
+.coaching-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.coaching-content h4 {
+    color: #2c3e50;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.coaching-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.coaching-intro {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+/* Sport-specific styling */
+.coaching-sport-running {
+    border-left: 4px solid #4a6fa5;
+}
+.coaching-sport-swimming {
+    border-left: 4px solid #4cb8c4;
+}
+.coaching-sport-cycling {
+    border-left: 4px solid #ff7e5f;
+}
+.coaching-sport-weight_training {
+    border-left: 4px solid #6c757d;
+}
+
+/* Level-specific styling */
+.coaching-level-beginner {
+    background-color: #f8f9fa;
+}
+.coaching-level-intermediate {
+    background-color: #e9ecef;
+}
+.coaching-level-advanced {
+    background-color: #dee2e6;
+}
+
+/* Feedback buttons */
+.btn-group-lg .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    margin: 0 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-group {
+        flex-direction: column;
+    }
+    .btn-group-lg .btn {
+        margin: 5px 0;
+        width: 100%;
+    }
+}
+/* Coaching Plan Styles */
+.coaching-content {
+    font-size: 1.15rem;
+    line-height: 1.9;
+}
+
+.coaching-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.coaching-content h4 {
+    color: #2c3e50;
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.coaching-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Sport-specific styling */
+.running-plan {
+    border-left: 6px solid #4a6fa5;
+    background-color: rgba(74, 111, 165, 0.03);
+}
+
+.swimming-plan {
+    border-left: 6px solid #4cb8c4;
+    background-color: rgba(76, 184, 196, 0.03);
+}
+
+.cycling-plan {
+    border-left: 6px solid #ff7e5f;
+    background-color: rgba(255, 126, 95, 0.03);
+}
+
+.weight_training-plan {
+    border-left: 6px solid #6c757d;
+    background-color: rgba(108, 117, 125, 0.03);
+}
+/* Add these to your existing sport-specific styling section */
+.cricket-plan {
+    border-left: 6px solid #e67e22;
+    background-color: rgba(230, 126, 34, 0.03);
+}
+
+.baseball-plan {
+    border-left: 6px solid #e74c3c;
+    background-color: rgba(231, 76, 60, 0.03);
+}
+
+.american_football-plan {
+    border-left: 6px solid #8e44ad;
+    background-color: rgba(142, 68, 173, 0.03);
+}
+
+.rugby-plan {
+    border-left: 6px solid #16a085;
+    background-color: rgba(22, 160, 133, 0.03);
+}
+
+.badminton-plan {
+    border-left: 6px solid #f39c12;
+    background-color: rgba(243, 156, 18, 0.03);
+}
+
+.table_tennis-plan {
+    border-left: 6px solid #d35400;
+    background-color: rgba(211, 84, 0, 0.03);
+}
+
+.golf-plan {
+    border-left: 6px solid #27ae60;
+    background-color: rgba(39, 174, 96, 0.03);
+}
+
+.hockey-plan {
+    border-left: 6px solid #2980b9;
+    background-color: rgba(41, 128, 185, 0.03);
+}
+
+.ice_hockey-plan {
+    border-left: 6px solid #3498db;
+    background-color: rgba(52, 152, 219, 0.03);
+}
+
+.boxing-plan {
+    border-left: 6px solid #c0392b;
+    background-color: rgba(192, 57, 43, 0.03);
+}
+
+.martial_arts-plan {
+    border-left: 6px solid #9b59b6;
+    background-color: rgba(155, 89, 182, 0.03);
+}
+
+.skiing-plan {
+    border-left: 6px solid #1abc9c;
+    background-color: rgba(26, 188, 156, 0.03);
+}
+
+.snowboarding-plan {
+    border-left: 6px solid #34495e;
+    background-color: rgba(52, 73, 94, 0.03);
+}
+
+.surfing-plan {
+    border-left: 6px solid #3498db;
+    background-color: rgba(52, 152, 219, 0.03);
+}
+
+.rowing-plan {
+    border-left: 6px solid #16a085;
+    background-color: rgba(22, 160, 133, 0.03);
+}
+
+.archery-plan {
+    border-left: 6px solid #d35400;
+    background-color: rgba(211, 84, 0, 0.03);
+}
+
+.fencing-plan {
+    border-left: 6px solid #7f8c8d;
+    background-color: rgba(127, 140, 141, 0.03);
+}
+
+/* Level-specific styling */
+.beginner-level {
+    background-image: linear-gradient(to bottom, rgba(248, 249, 250, 0.8), rgba(248, 249, 250, 0.95));
+}
+
+.intermediate-level {
+    background-image: linear-gradient(to bottom, rgba(233, 236, 239, 0.8), rgba(233, 236, 239, 0.95));
+}
+
+.advanced-level {
+    background-image: linear-gradient(to bottom, rgba(222, 226, 230, 0.8), rgba(222, 226, 230, 0.95));
+}
+
+/* List formatting */
+.coaching-content ol, 
+.coaching-content ul {
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.coaching-content li {
+    margin-bottom: 0.75rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .coaching-content {
+        font-size: 1.05rem;
+    }
+    
+    .feedback-section .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Animation for plan sections */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.coaching-plan > p,
+.coaching-plan > h4 {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.coaching-plan > p:nth-child(1) { animation-delay: 0.1s; }
+.coaching-plan > p:nth-child(2) { animation-delay: 0.3s; }
+.coaching-plan > h4:nth-child(3) { animation-delay: 0.5s; }
+.coaching-plan > p:nth-child(4) { animation-delay: 0.7s; }
+
+
+/* Coaching Plan Styles */
+.coaching-plan {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    color: #333;
+}
+
+.plan-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.plan-header h2 {
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.plan-header h3 {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.motivation-section, 
+.weekly-plan, 
+.technical-section, 
+.recovery-section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.week-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: var(--border-radius);
+}
+
+.coaching-plan h4 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin: 1.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.coaching-plan h5 {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 1rem 0;
+}
+
+.coaching-plan strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.coaching-plan p {
+    margin-bottom: 1rem;
+}
+
+/* Sport-specific backgrounds */
+.running-plan .weekly-plan {
+    border-left: 4px solid #4a6fa5;
+}
+
+.swimming-plan .weekly-plan {
+    border-left: 4px solid #4cb8c4;
+}
+
+.cycling-plan .technical-section {
+    border-left: 4px solid #ff7e5f;
+}
+
+.weight_training-plan .recovery-section {
+    border-left: 4px solid #6c757d;
+}
+
+/* Level-specific colors */
+.beginner-level .plan-header {
+    background: rgba(74, 111, 165, 0.1);
+}
+
+.intermediate-level .plan-header {
+    background: rgba(76, 184, 196, 0.1);
+}
+
+.advanced-level .plan-header {
+    background: rgba(255, 126, 95, 0.1);
+}
+
+/* Add these to your existing styles */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hover-lift {
+    transition: var(--transition);
+}
+
+.hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Auth Pages */
+.auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    border: none;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+}
+
+.auth-header {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.auth-body {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Dashboard */
+.stats-card {
+    border: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Chat Page */
+.chat-container {
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.message {
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 0 15px;
+    }
+    
+    .chat-container {
+        height: calc(100vh - 150px);
+    }
+}

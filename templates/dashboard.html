@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - EliteCoach AI{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1 class="fw-bold">
+            <i class="bi bi-speedometer2 me-3"></i>
+            Your Dashboard
+        </h1>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-2"></i>New Plan
+        </a>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="glass-card p-4 h-100">
+                <h3 class="fw-bold mb-4">
+                    <i class="bi bi-person-circle me-2"></i>
+                    Quick Stats
+                </h3>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                        <i class="bi bi-clipboard2-pulse text-primary fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-0">{{ plans|length }}</h5>
+                        <small class="text-muted">Training Plans</small>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-success bg-opacity-10 p-3 rounded-circle me-3">
+                        <i class="bi bi-trophy text-success fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-0">
+                            {% if plans %}
+                                {{ plans[0].sport.replace('_', ' ').title() }}
+                            {% else %}
+                                None
+                            {% endif %}
+                        </h5>
+                        <small class="text-muted">Primary Sport</small>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center">
+                    <div class="bg-info bg-opacity-10 p-3 rounded-circle me-3">
+                        <i class="bi bi-graph-up-arrow text-info fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-0">
+                            {% if plans %}
+                                {{ plans[0].level.title() }}
+                            {% else %}
+                                Not set
+                            {% endif %}
+                        </h5>
+                        <small class="text-muted">Current Level</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-8 mb-4">
+            <div class="glass-card p-4 h-100">
+                <h3 class="fw-bold mb-4">
+                    <i class="bi bi-clock-history me-2"></i>
+                    Recent Plans
+                </h3>
+                
+                {% if plans %}
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sport</th>
+                                <th>Level</th>
+                                <th>Focus Areas</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for plan in plans[:5] %}
+                            <tr>
+                                <td>{{ plan.sport.replace('_', ' ').title() }}</td>
+                                <td>{{ plan.level.title() }}</td>
+                                <td>
+                                    {% for goal in plan.goals[:3] %}
+                                        <span class="badge bg-primary me-1">{{ goal }}</span>
+                                    {% endfor %}
+                                </td>
+                                <td>{{ plan.created_at|datetimeformat }}</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="bi bi-clipboard2-x fs-1 text-muted mb-3"></i>
+                    <h5 class="text-muted">No training plans yet</h5>
+                    <p>Create your first personalized training plan to get started</p>
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">
+                        <i class="bi bi-plus-lg me-2"></i>Create Plan
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="glass-card p-4 mb-4">
+        <h3 class="fw-bold mb-4">
+            <i class="bi bi-chat-left-text me-2"></i>
+            Quick Access
+        </h3>
+        
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <a href="{{ url_for('chat.chat_home') }}" class="card h-100 hover-lift text-decoration-none">
+                    <div class="card-body text-center">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                            <i class="bi bi-chat-square-text text-primary fs-2"></i>
+                        </div>
+                        <h5 class="mb-1">Coach Chat</h5>
+                        <p class="text-muted small">Ask our AI coach anything</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-md-4 mb-3">
+                <a href="{{ url_for('index') }}" class="card h-100 hover-lift text-decoration-none">
+                    <div class="card-body text-center">
+                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                            <i class="bi bi-clipboard2-pulse text-success fs-2"></i>
+                        </div>
+                        <h5 class="mb-1">New Plan</h5>
+                        <p class="text-muted small">Create a training plan</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-md-4 mb-3">
+                <a href="#" class="card h-100 hover-lift text-decoration-none">
+                    <div class="card-body text-center">
+                        <div class="bg-info bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                            <i class="bi bi-graph-up-arrow text-info fs-2"></i>
+                        </div>
+                        <h5 class="mb-1">Progress</h5>
+                        <p class="text-muted small">Track your performance</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
